@@ -1,0 +1,57 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+ 
+using namespace std;
+ 
+vector <long long> t(400000);
+int n, k;
+long long i, j, l, r, x;
+char c;
+ 
+long long Sum(int v, int lp, int rp, int l, int r) {
+    if (l > r) return 0;
+    if ((l == lp) && (r == rp))
+        return t[v];
+    int m = (lp + rp) / 2;
+ 
+    return Sum(2 * v, lp, m, l, min(r, m)) +
+           Sum(2 * v + 1, m + 1, rp, max(l, m + 1), r);
+}
+ 
+void update(int v, int lp, int rp, int p, int new_v) {
+ 
+    if (lp == rp)
+        t[v] = new_v;
+    else {
+        int m = (lp + rp) / 2;
+        if (p <= m)
+            update(2 * v, lp, m, p, new_v);
+        else
+            update(2 * v + 1, m + 1, rp, p, new_v);
+ 
+        t[v] = t[2 * v] + t[2 * v + 1];
+    }
+ 
+}
+ 
+int main() {
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    cin >> n >> k;
+ 
+    for (j = 0; j < k; j++) {
+        cin >> c;
+        switch (c) {
+            case 'A':
+                cin >> i >> x;
+                update(1, 1, n, i, x);
+                break;
+            case 'Q':
+                cin >> l >> r;
+                cout << Sum(1, 1, n, l, r) << '\n';
+                break;
+        }
+ 
+    }
+}
