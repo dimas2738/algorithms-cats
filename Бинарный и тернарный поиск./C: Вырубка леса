@@ -1,0 +1,14 @@
+inn=open('forest.in','r')
+a_perDay,k_off,b_perDay,m_off,x=map(int,inn.read().split())
+l=0
+r=2*x
+while l < r - 1:
+    t = (l + r) // 2
+    dmi = (t // k_off) *(k_off - 1) * a_perDay + (t % k_off) * a_perDay
+    fed = (t // m_off) *(m_off - 1) * b_perDay+ (t % m_off) * b_perDay
+    if dmi + fed >= x:
+        r=t
+    else:
+        l=t
+
+open('forest.out', 'w').write(str(r))
