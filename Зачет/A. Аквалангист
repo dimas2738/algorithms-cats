@@ -1,0 +1,28 @@
+using System;
+ 
+namespace D
+{
+    class MainClass
+    {
+       
+    public static void Main()
+        {
+            var s = Console.ReadLine().Split(' ');
+            int a = int.Parse(s[0]);
+            int b = int.Parse(s[1]);
+            int c = int.Parse(s[2]);
+ 
+            var s1 = Console.ReadLine().Split(' ');
+            int k = int.Parse(s1[0]);
+            int l = int.Parse(s1[1]);
+            int m = int.Parse(s1[2]);
+            int n = int.Parse(s1[3]);
+ 
+            int res=Math.Abs(k - a) + Math.Abs(l - b) + m;
+            if (res / n + (res % n == 0 ? 0 : 1) <= c)
+                Console.WriteLine("NO");
+            else
+                Console.WriteLine("YES");
+        }
+    }
+}
