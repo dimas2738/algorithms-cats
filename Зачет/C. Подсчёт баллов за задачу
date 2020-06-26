@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace ConsoleApp1{
+    class Program{
+        static void Main(string[] args)
+        {
+        string[] text = File.ReadAllLines(@"input.txt");
+        int N = Convert.ToInt32(text[0]);
+        string[] a = text[1].Split(' ');
+        int[] NN= new int[N];
+        int res = 0;
+        for (int i = 0; i < N; i++){
+            NN[i] = Convert.ToInt32(a[i]);
+            if (text[2][i] == '+'){
+                res += NN[i];
+                }
+            }
+        
+
+        using (StreamWriter f = new StreamWriter(@"output.txt"))
+        {
+        f.WriteLine(Convert.ToString(res));
+        }
+        }
+    }}
