@@ -1,0 +1,52 @@
+using System;
+
+namespace B
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var inp = Console.ReadLine().Split(' ');
+            int n = int.Parse(inp[0]);
+            int k = int.Parse(inp[1]);
+            var inp1= Console.ReadLine();
+            int start = 0, end = k - 1, cow = 0, byk = 0;
+            int tmpstart = 0, tmpend = 0, tmpcow = 0, byktmp = 0;
+
+            for (int i = 0; i < k; i++)
+            {
+                if (inp1[i] == 'X')
+                    cow++;
+                if (inp1[i] == 'Y')
+                    byk++;
+            }
+            tmpcow = cow;
+            byktmp = byk;
+
+            for (int i = 0; i + k < inp1.Length; i++)
+            {
+                if (inp1[k + i] == 'X')
+                    tmpcow++;
+                if (inp1[k + i] == 'Y')
+                    byktmp++;
+                if (inp1[i] == 'X')
+                    tmpcow--;
+                if (inp1[i] == 'Y')
+                    byktmp--;
+
+                var dist = Math.Min(start, inp1.Length - end - 1);
+                var distmp = Math.Min(i + 1, inp1.Length - k - i - 1);
+                if (tmpcow > cow || tmpcow == cow && byk < byktmp || tmpcow == cow && byk == byktmp && dist < distmp)
+                {
+                    end = k + i;
+                    start = i + 1;
+                    tmpcow = cow;
+                    byk = byktmp;
+                }
+
+            }
+
+            Console.WriteLine("{0} {1}", start + 1, end + 1);
+        }
+    }
+}
