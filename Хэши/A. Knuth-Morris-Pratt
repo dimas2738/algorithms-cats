@@ -1,0 +1,12 @@
+<?php
+
+$input = explode(PHP_EOL, file_get_contents('input.txt'));
+$str = strpos($input[0], $input[1]);
+
+if ($str === false) {
+    $str = -1;
+} else {
+    $str++;
+}
+
+file_put_contents('output.txt', (string) $str);
