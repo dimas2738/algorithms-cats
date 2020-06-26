@@ -1,0 +1,16 @@
+using System;
+ 
+public class Program
+{
+    public static void Main()
+    {
+        var s = Console.ReadLine().Split(' ');
+        int n = int.Parse(s[0]);
+        int k = int.Parse(s[1]);
+		
+		
+        n= (n- n/k);
+        Console.WriteLine(n);
+    
+ }
+}
