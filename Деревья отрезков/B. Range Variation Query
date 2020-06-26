@@ -1,0 +1,44 @@
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+#include <climits>
+
+using namespace std;
+#define length 100000
+
+int main()
+{
+ freopen("rvq.in", "r", stdin);
+    freopen("rvq.out", "w", stdout);
+ 
+ int a[length];
+ for (long long i = 1; i <= length; i++)
+ {
+  a[i - 1] = ((i % 12345) * (i % 12345)) % 12345 + ((i % 23456) * (i % 23456) % 23456 * i % 23456) % 23456;
+ }
+ int k, x, y, result;
+ cin >> k;
+ int max, min;
+ for (int i = 0; i < k; i++)
+ {
+  cin >> x >> y;
+  max = INT_MIN;
+  min = INT_MAX;
+  if (x > 0)
+  {
+   for (int i = x - 1; i < y; i++)
+   {
+    if (max < a[i])
+     max = a[i];
+    if (min > a[i])
+     min = a[i];
+   }
+   cout << max - min << endl;
+  }
+  else
+  {
+   x *= -1;
+   a[x - 1] = y;
+  }
+ }
+}
