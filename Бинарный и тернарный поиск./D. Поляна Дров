@@ -1,0 +1,17 @@
+import math
+with open('input.txt', 'r') as fin:
+    vp, vf = map(int, fin.readline().split())
+    a = float(fin.readline())
+
+left, right = 0, 1
+while right - left > 0.00000001:
+    k_1, k_2 = left + (right - left) / 3, right - (right - left) / 3
+    s11 = math.sqrt((1 - a) ** 2 + k_1 ** 2) / vp
+    s12 = math.sqrt((1 - a) ** 2 + k_2 ** 2) / vp
+    s21 = math.sqrt((1 - k_1) ** 2 + a ** 2) / vf
+    s22 = math.sqrt((1 - k_2) ** 2 + a ** 2) / vf
+    if s12 + s22 > s11 + s21:
+        right = k_2
+    else:
+        left = k_1
+print(right, file=open('output.txt', 'w'))
