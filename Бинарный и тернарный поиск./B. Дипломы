@@ -1,0 +1,11 @@
+inn=open('diploma.in','r')
+w,h,n=map(int,inn.read().split())
+l=0
+r = (w + h) * n
+while (r - l )> 1:
+    x = (r + l) // 2
+    if ((x //w) * (x //h)) >= n:
+        r = x
+    else:
+        l = x
+open('diploma.out', 'w').write(str(r))
